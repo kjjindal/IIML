@@ -2,6 +2,7 @@
 include 'dbconnect.php';
 $success=false;
 ?>
+
 <?php
 
 error_reporting(0);
@@ -11,6 +12,7 @@ error_reporting(0);
 $unq=array("General"=>"GENE","CDA"=>"CDAA","Lease"=>"LEAS","CTA"=>"CTAA","Medical waste Disposal Agreement"=>"MWDA","C_F"=>"CANF","Manufacturing(IIL as Manufacturer)"=>"MIIM","Collection Agent Agreement"=>"COLL","Distribution"=>"DIST","Manufacturing(IIL as company)"=>"MIIC");
 if(isset($_GET['doc'])){
   $unqw=$unq[$_GET['doc']];
+
 }
 
 $sql="SELECT * FROM `legal`.`agreementmasterdata1`  ";
@@ -18,8 +20,7 @@ $result=mysqli_query($conn,$sql);
  while($row=mysqli_fetch_assoc($result)){
    $sno=$row['sno'];
    $date=date('dmY');
-   $unic_no=$unqw."/".($sno+1)."/".$date; 
-   $e1=$unic_no; 
+   $unic_no=$unqw."/".($sno+1)."/".$date;  
  }
 
 ?>
@@ -31,7 +32,8 @@ $result=mysqli_query($conn,$sql);
  <?php
 
  if($_SERVER['REQUEST_METHOD']=='POST'){
-  //  $e1= $_POST['General_Unic_No'];
+   $e1= $_POST['General_Unic_No'];
+  //  echo $e1;
    $e2= $_POST['General_Department'];
    $e3= $_POST['General_Type_of_Agreement'];
    $e4= $_POST['General_Executing_By__IIL_HBI'];
@@ -86,15 +88,15 @@ $result=mysqli_query($conn,$sql);
    $e53= $_POST['Medical_waste_Disposal_Agreement_Payment_details'];
 
 
-
-
-
-   $sql="INSERT INTO `legal`.`agreementmasterdata1` (`General_Unic_No`, `General_Department`, `General_Type_of_Agreement`, `General_Executing_By__IIL_HBI`, `General_Other_Party_Name`, `General_Third_party_name_in_case_of_Tripartite`, `General_Purpose_of_Agreement`, `General_Date_of_signed_copy_received`, `General_Date_of_Execution_of_Agreement`, `General_Effective_Date`, `General_Validity_period_of`, `General_Date_of_Expiry`, `General_Exclusive_Non_Exclusive`, `General_Territory`, `General_Termination_clause_existence`, `General_Period_of_notice_for_termination`, `General_Governing_Law`, `General_Arbitration`, `General_Who_will_appoint_Arbitrator`, `General_Jurisdiction__for_Courts_Arbitration`, `CDA_Period_of_confidentiality_after_the_expiry`, `M_IIL_as_company_By_back_commercialization_in_open_market`, `M_IIL_as_company_One_time_Fee`, `M_IIL_as_company_Royalty_Pct_and_the_period`, `M_IIL_as_company_Pct_of_penalty_and_for_what`, `M_IIL_as_company_who_will_fix_MRP`, `M_IIL_as_company_Getting_info_from_M_at_what_instances`, `M_IIL_as_Manufacturer_To_sell__to_c_commercializ_in_open_market`, `M_IIL_as_Manufacturer_One_time_fee`, `M_IIL_as_Manufacturer_Royalty_Pct_and_the_period`, `M_IIL_as_Manufacturer_Pct_of_penalty_and_for_what`, `M_IIL_as_Manufacturer_who_will_fix_MRP`, `M_IIL_as_Manufacturer_Passing_info_to_Company_at_what_instances`, `Lease_Registered_Unregistered`, `Lease_Security_Deposit`, `Lease_Monthly_quarterly_Half_yearly_Yearly`, `Lease_Lease_amount`, `Lease_Pct_increase_at_the_time_of_renewal`, `D_In_case_of_award_of_Tender_Pct_Commission`, `C_F_BG_Amount`, `C_F_BG_Expiry`, `C_F_Sales_Limit`, `C_F_Pct_Commission`, `C_F_Pct_Performance_Incentive`, `C_F_Max_Pct_Commission`, `C_F_Remuneration_for_institutional_Sales`, `Collection_Agent_Agreement_Pct_Service_Charges`, `CTA_Any_payment_towards_Product__Material__etc`, `CTA_Budget_per_Subject`, `CTA_Minimum_Subjects`, `CTA_Disbursement_schedule_by_Sponsor_to_Institution`, `CTA_Amount_by_Sponsor_to_Investigative_Site`, `Medical_waste_Disposal_Agreement_Payment_detailsl`) VALUES ('$e1', '$e2', '$e3', '$e4', '$e5', '$e6', '$e7', '$e8', '$e9', '$e10', '$e11', '$e12', '$e13', '$e14', '$e15', '$e16', '$e17', '$e18', '$e19', '$e20', '$e21', '$e22', '$e23', '$e24', '$e25', '$e26', '$e27', '$e28', '$e29', '$e30', '$e31', '$e32','$e33', '$e34', '$e35', '$e36', '$e37', '$e38', '$e39', '$e40', '$e41', '$e42', '$e43', '$e44', '$e45', '$e46', '$e47', '$e48', '$e49', '$e50', '$e51', '$e52', '$e53')";
-   $result=mysqli_query($conn,$sql);
    
+
+   $sql="INSERT INTO agreementmasterdata1 (General_Unic_No) VALUES ('$e1')";
+   
+
+  //  $sql="INSERT INTO `legal`.`agreementmasterdata1` (`General_Unic_No`, `General_Department`, `General_Type_of_Agreement`, `General_Executing_By__IIL_HBI`, `General_Other_Party_Name`, `General_Third_party_name_in_case_of_Tripartite`, `General_Purpose_of_Agreement`, `General_Date_of_signed_copy_received`, `General_Date_of_Execution_of_Agreement`, `General_Effective_Date`, `General_Validity_period_of`, `General_Date_of_Expiry`, `General_Exclusive_Non_Exclusive`, `General_Territory`, `General_Termination_clause_existence`, `General_Period_of_notice_for_termination`, `General_Governing_Law`, `General_Arbitration`, `General_Who_will_appoint_Arbitrator`, `General_Jurisdiction__for_Courts_Arbitration`, `CDA_Period_of_confidentiality_after_the_expiry`, `M_IIL_as_company_By_back_commercialization_in_open_market`, `M_IIL_as_company_One_time_Fee`, `M_IIL_as_company_Royalty_Pct_and_the_period`, `M_IIL_as_company_Pct_of_penalty_and_for_what`, `M_IIL_as_company_who_will_fix_MRP`, `M_IIL_as_company_Getting_info_from_M_at_what_instances`, `M_IIL_as_Manufacturer_To_sell__to_c_commercializ_in_open_market`, `M_IIL_as_Manufacturer_One_time_fee`, `M_IIL_as_Manufacturer_Royalty_Pct_and_the_period`, `M_IIL_as_Manufacturer_Pct_of_penalty_and_for_what`, `M_IIL_as_Manufacturer_who_will_fix_MRP`, `M_IIL_as_Manufacturer_Passing_info_to_Company_at_what_instances`, `Lease_Registered_Unregistered`, `Lease_Security_Deposit`, `Lease_Monthly_quarterly_Half_yearly_Yearly`, `Lease_Lease_amount`, `Lease_Pct_increase_at_the_time_of_renewal`, `D_In_case_of_award_of_Tender_Pct_Commission`, `C_F_BG_Amount`, `C_F_BG_Expiry`, `C_F_Sales_Limit`, `C_F_Pct_Commission`, `C_F_Pct_Performance_Incentive`, `C_F_Max_Pct_Commission`, `C_F_Remuneration_for_institutional_Sales`, `Collection_Agent_Agreement_Pct_Service_Charges`, `CTA_Any_payment_towards_Product__Material__etc`, `CTA_Budget_per_Subject`, `CTA_Minimum_Subjects`, `CTA_Disbursement_schedule_by_Sponsor_to_Institution`, `CTA_Amount_by_Sponsor_to_Investigative_Site`, `Medical_waste_Disposal_Agreement_Payment_detailsl`) VALUES ('$e1', '$e2', '$e3', '$e4', '$e5', '$e6', '$e7', '$e8', '$e9', '$e10', '$e11', '$e12', '$e13', '$e14', '$e15', '$e16', '$e17', '$e18', '$e19', '$e20', '$e21', '$e22', '$e23', '$e24', '$e25', '$e26', '$e27', '$e28', '$e29', '$e30', '$e31', '$e32','$e33', '$e34', '$e35', '$e36', '$e37', '$e38', '$e39', '$e40', '$e41', '$e42', '$e43', '$e44', '$e45', '$e46', '$e47', '$e48', '$e49', '$e50', '$e51', '$e52', '$e53')";
+   $result=mysqli_query($conn,$sql);
    if($result){
       $success=true;
-    
    }
   }
 ?>
@@ -199,7 +201,7 @@ else{
   <div class="col-md-4 mb-3" style="word-break:break-word">
   <label for="validationCustom01">General_Unic_No</label>
 
-    <input type="text" class="form-control" id="validationCustom01" name="General_Unic_No" required value='.$unic_no.'  disabled>
+    <input type="text" class="form-control" id="validationCustom01" name="General_Unic_No" required value='.$unic_no.' readonly>
     <div class="valid-feedback">
       Looks good!
     </div>
